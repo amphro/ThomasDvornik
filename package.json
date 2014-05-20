@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/amphro/ThomasDvornik",
   "dependencies": {
+    "ejs": "^1.0.0",
     "express": "^4.2.0"
   }
 }
