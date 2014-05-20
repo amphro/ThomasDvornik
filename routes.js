@@ -14,9 +14,10 @@ exports.about = function(req, res) {
 }
 
 exports.projects = function(req, res) {
-  res.render('default', {
+  res.render('projects', {
     title: 'Projects',
-    classname: 'about'
+    classname: 'projects',
+    projects: require('./data/projects.json')
   });
 }
 
