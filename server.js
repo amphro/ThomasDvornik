@@ -3,9 +3,13 @@ var app = express();
 
 app.set('view engine', 'ejs');
 
+//On slide 51. When should we use these?
+app.locals.pagetitle = "Thomas Dvornik";
+
 app.get('/', function(req, res) {
   res.render('default', {
     title: 'Home',
+    classname: 'home',
     users: ['Ray', 'Morten', 'James']
   });
 });
