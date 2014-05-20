@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/amphro/ThomasDvornik/issues"
   },
-  "homepage": "https://github.com/amphro/ThomasDvornik"
+  "homepage": "https://github.com/amphro/ThomasDvornik",
+  "dependencies": {
+    "express": "^4.2.0"
+  }
 }

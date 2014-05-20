@@ -1,10 +1,18 @@
-var http = require('http'); //add the http module
-var myServer = http.createServer(function(request, response) {
-  response.writeHead(200, {"Content-Type" : "text/html"});
-  response.write("<b>Hello</b> World");
-  response.end();
-}); //create a server
+var express = require('express');
+var app = express();
 
-myServer.listen(3000);
+app.get('/', function(req, res) {
+  res.send('<H1>Hello</H1> Express');
+});
 
-console.log("Go to http://localhost:3000 on your browser");
+app.get('/projects', function(req, res) {
+  res.send('<H1>Projects</H1>');
+});
+
+app.get('/about', function(req, res) {
+  res.send('<H1>About</H1>');
+});
+
+var server = app.listen(3000, function() {
+  console.log('Listening on port 3000');
+});
