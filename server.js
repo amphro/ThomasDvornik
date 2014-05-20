@@ -5,8 +5,9 @@ var app = express();
 
 app.set('view engine', 'ejs');
 
-//On slide 51. When should we use these?
-app.locals.pagetitle = "Thomas Dvornik";
+app.locals.social = require("./data/social.json");
+
+app.use(express.static('public'));
 
 app.get('/', routes.index);
 app.get('/about', routes.about);
