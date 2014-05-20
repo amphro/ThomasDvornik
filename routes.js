@@ -19,3 +19,10 @@ exports.projects = function(req, res) {
     classname: 'about'
   });
 }
+
+exports.project = function(req, res) {
+  res.render('project-details', {
+    title: 'Project ' + req.params.project,
+    classname: 'about'
+  });
+}

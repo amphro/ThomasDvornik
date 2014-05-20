@@ -11,6 +11,10 @@ app.locals.pagetitle = "Thomas Dvornik";
 app.get('/', routes.index);
 app.get('/about', routes.about);
 app.get('/projects', routes.projects);
+app.get('/project/:project', routes.project);
+app.get('/project/', function(req, res) {
+  res.redirect("/projects");
+});
 
 app.get('*', function(req, res) {
   res.send('Bad Route');
