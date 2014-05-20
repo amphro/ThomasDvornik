@@ -1,4 +1,6 @@
 var express = require('express');
+var routes = require('./routes');
+
 var app = express();
 
 app.set('view engine', 'ejs');
@@ -6,20 +8,12 @@ app.set('view engine', 'ejs');
 //On slide 51. When should we use these?
 app.locals.pagetitle = "Thomas Dvornik";
 
-app.get('/', function(req, res) {
-  res.render('default', {
-    title: 'Home',
-    classname: 'home',
-    users: ['Ray', 'Morten', 'James']
-  });
-});
+app.get('/', routes.index);
+app.get('/about', routes.about);
+app.get('/projects', routes.projects);
 
-app.get('/projects', function(req, res) {
-  res.send('<H1>Projects</H1>');
-});
-
-app.get('/about', function(req, res) {
-  res.send('<H1>About</H1>');
+app.get('*', function(req, res) {
+  res.send('Bad Route');
 });
 
 var server = app.listen(3000, function() {
