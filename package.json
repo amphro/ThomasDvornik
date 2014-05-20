@@ -1,0 +1,19 @@
+{
+  "name": "ThomasDvornikDotCom",
+  "version": "0.0.0",
+  "description": "Code for personal website",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amphro/ThomasDvornik.git"
+  },
+  "author": "Thomas Dvornik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/amphro/ThomasDvornik/issues"
+  },
+  "homepage": "https://github.com/amphro/ThomasDvornik"
+}
