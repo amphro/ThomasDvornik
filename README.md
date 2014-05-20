@@ -1,7 +1,5 @@
-## Project Template
+## ThomasDvornik.com
 
-This is a simple project template to get going on new node.js prototypes
+ThomasDvornik.com is my personal website. I uses to use Wordpress, but I never blogged and I wanted a place where I could put all my experements and hacks. 
 
-- [Node.js](http://nodejs.org)
-- [Express.js](http://expressjs.com/)
-- Sweat & Tears
+Check it out at [ThomasDvornik.com](http://thomasdvornik.com)
