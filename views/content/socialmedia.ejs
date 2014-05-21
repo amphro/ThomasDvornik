@@ -1,8 +1,5 @@
-<article class="socialmediaicons">
-  <span class="title">Join the movement: </span>
-  <ul class="group">
-    <% social.forEach(function(item) { %>
-      <li><a href="<%= item.url %>"><img class="icon" src="<%= item.img %>" alt="icon for <%= item.shortname %>"></a></li>
+<div class="socialmediaicons">
+  <% social.forEach(function(item) { %>
+      <a href="<%= item.url %>"><img class="icon" src="<%= item.img %>" alt="icon for <%= item.shortname %>"></a>
     <% }); %>
-  </ul>
-</article>
+</div>

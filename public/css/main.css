@@ -1,0 +1,34 @@
+header {
+    padding : 5px;
+    position : absolute;
+    top: 0px;
+    left : 0px;
+    background-color : white;
+    color : black;
+    width: 100%;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+}
+
+header .navigation {
+    margin-left: 30px;
+}
+
+header .navigation a {
+    color : grey;
+    margin-left: 10px;
+}
+
+header .socialmediaicons {
+    position: absolute;
+    top: 5px;
+    right: 20px;
+}
+
+header .socialmediaicons img {
+    width: 15px;
+    height: 15px;
+}
+
+body {
+    margin-top: 30px;
+}
