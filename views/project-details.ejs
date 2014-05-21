@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head><% include partials/page/head.ejs %></head>
-<body class="<%= classname %>" >
+<body>
 <% include partials/page/header.ejs %>
 
 <div class="container">
   <h1><%= title %></h1>
-  <p></p>
+
+  <p><%= desctiption %></p>
+  <%= gitHub %>
+  <p><%= demo %></p>
 </div><!-- container -->
 
   <% include partials/page/footer.ejs %>

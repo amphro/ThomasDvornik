@@ -7,7 +7,9 @@
 <div class="container">
   <h1><%= title %></h1>
   <% projects.forEach(function(project) { %>
-    <li><b><%= project.title %></b>: <%= project.details %></li>
+    <div class="project"><h2><a href="/project/<%= project.title %>"><%= project.title %>:</a></h2>
+      <%= project.shortDescription %>
+    </div>
   <% }); %>
 </div>
 

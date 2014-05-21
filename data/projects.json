@@ -1,5 +1,8 @@
 [{
     "title" : "Numerology",
     "link" : "numerology",
-    "details" : "Numerology..."
+    "shortDescription" : "Numerology...",
+    "desctiption" : "Long desc",
+    "gitHub" : "git hub link",
+    "demo" : "demo link"
 }]

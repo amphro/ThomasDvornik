@@ -22,8 +22,12 @@ exports.projects = function(req, res) {
 }
 
 exports.project = function(req, res) {
-  res.render('project-details', {
-    title: 'Project ' + req.params.project,
-    classname: 'about'
+  var projects = require('./data/projects.json');
+  var p = null;
+  projects.forEach(function(project) {
+    if (project.title === req.params.project) {
+      p = project;
+    }
   });
+  res.render('project-details', p);
 }
