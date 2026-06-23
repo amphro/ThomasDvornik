@@ -80,6 +80,7 @@ export default function Steelman() {
         onChange={e => setPosition(e.target.value)}
         placeholder={placeholder}
         rows={4}
+        maxLength={1000}
         style={{
           width: '100%',
           background: 'var(--surface-2)',

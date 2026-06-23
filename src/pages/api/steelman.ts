@@ -1,25 +1,27 @@
 import type { APIRoute } from 'astro';
-import { checkRateLimit } from '../../lib/rateLimit';
+import { checkRateLimit, consumeRateLimit } from '../../lib/rateLimit';
 
 export const prerender = false;
 
 export const POST: APIRoute = async ({ request, locals }) => {
   const { env } = (locals as App.Locals).runtime;
 
-  // Rate limit by IP — 3 requests per 24 hours
   const kv = (env as Record<string, unknown>).RATE_LIMIT as KVNamespace | undefined;
-  let remainingRequests: number | null = null;
-  if (kv) {
-    const ip = request.headers.get('CF-Connecting-IP') ?? request.headers.get('X-Forwarded-For') ?? '0.0.0.0';
-    const rl = await checkRateLimit(kv, ip);
-    if (!rl.allowed) {
-      const hours = Math.ceil(rl.retryAfterSecs / 3600);
-      return new Response(
-        JSON.stringify({ error: `You've used your 3 free requests for today. Try again in about ${hours} hour${hours === 1 ? '' : 's'}.` }),
-        { status: 429, headers: { 'Content-Type': 'application/json', 'X-Rate-Limit-Remaining': '0' } }
-      );
-    }
-    remainingRequests = rl.remaining;
+  if (!kv) {
+    return new Response(JSON.stringify({ error: 'Service temporarily unavailable.' }), {
+      status: 503,
+      headers: { 'Content-Type': 'application/json' },
+    });
+  }
+
+  const ip = request.headers.get('CF-Connecting-IP') ?? '127.0.0.1';
+  const check = await checkRateLimit(kv, 'steelman', ip);
+  if (!check.allowed) {
+    const hours = Math.ceil(check.retryAfterSecs / 3600);
+    return new Response(
+      JSON.stringify({ error: `You've used your 2 free requests for today. Try again in about ${hours} hour${hours === 1 ? '' : 's'}.` }),
+      { status: 429, headers: { 'Content-Type': 'application/json', 'X-Rate-Limit-Remaining': '0' } }
+    );
   }
 
   let position: string;
@@ -76,6 +78,14 @@ Respond with raw JSON only. No markdown, no code fences.`;
         if (!match) throw new Error('no json object found');
         parsed = JSON.parse(match[0]);
       }
+      if (
+        typeof parsed.steelman !== 'string' ||
+        !Array.isArray(parsed.weaknesses) ||
+        typeof parsed.score !== 'number' ||
+        typeof parsed.scoreReason !== 'string'
+      ) {
+        throw new Error('invalid shape');
+      }
     } catch {
       console.error('Parse error. Raw response:', result.response);
       return new Response(JSON.stringify({ error: 'Model returned unexpected format. Try again.' }), {
@@ -84,9 +94,11 @@ Respond with raw JSON only. No markdown, no code fences.`;
       });
     }
 
-    const headers: Record<string, string> = { 'Content-Type': 'application/json' };
-    if (remainingRequests !== null) headers['X-Rate-Limit-Remaining'] = String(remainingRequests);
-    return new Response(JSON.stringify(parsed), { status: 200, headers });
+    const remaining = await consumeRateLimit(kv, 'steelman', ip);
+    return new Response(JSON.stringify(parsed), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json', 'X-Rate-Limit-Remaining': String(remaining) },
+    });
   } catch (err) {
     console.error('Workers AI error:', err);
     return new Response(JSON.stringify({ error: 'AI request failed. Try again.' }), {

@@ -50,6 +50,7 @@ export default function VibeCheck() {
         onChange={e => setText(e.target.value)}
         placeholder={placeholder}
         rows={5}
+        maxLength={2000}
         style={{
           width: '100%',
           background: 'var(--surface-2)',
