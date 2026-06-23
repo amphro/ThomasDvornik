@@ -1,0 +1,468 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+export const prerender = true;
+---
+
+<BaseLayout
+  title="About"
+  description="Thomas Dvornik, Principal Engineer at Salesforce. 15 years building platforms, CLIs, and AI systems. Marin, CA."
+>
+  <div class="page">
+    <div class="container">
+
+      <div class="hero-section">
+        <div class="hero-text">
+          <span class="label">About</span>
+          <h1>Thomas Dvornik.</h1>
+          <p class="tagline">Principal Engineer · Marin, CA · 15 years at Salesforce</p>
+          <p class="hero-quote">
+            "My passion is building products that customers love (platforms,
+            developer tools, productivity) and finding the right balance between
+            moving fast and moving safe."
+          </p>
+        </div>
+        <div class="hero-photo">
+          <img
+            src="/thomas.jpg"
+            alt="Thomas Dvornik"
+            class="photo"
+            width="340"
+            height="420"
+          />
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">years at Salesforce</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">30M+</div>
+          <div class="stat-label">monthly CLI executions at handoff</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">400+</div>
+          <div class="stat-label">OSS contributions</div>
+        </div>
+        <div class="stat">
+          <div class="stat-number">4.71</div>
+          <div class="stat-label">Dreamforce speaker rating</div>
+        </div>
+      </div>
+
+      <div class="currently">
+        <h2 class="section-label">Currently thinking about</h2>
+        <ul>
+          <li>Where AI actually pays off in enterprise developer tooling vs. where it's noise</li>
+          <li>Multi-tenant business architecture: the hard parts (residency, billing hierarchy, org lifecycle)</li>
+          <li>The gap between AI demo and AI product at enterprise scale</li>
+          <li>Edge computing and the Cloudflare Workers primitives I wish existed three years ago</li>
+        </ul>
+      </div>
+
+      <div class="bio">
+        <h2 class="section-label">Background</h2>
+        <p>
+          I've always been drawn to building things. It started with computers.
+          My brother and I would pull machines apart and put them back together,
+          mostly to run games, often all night. My sister taught me HTML. In high
+          school I found robotics through FIRST competitions, traveling the country
+          doing mechanical design, firmware, and running onto the field mid-match
+          to fix whatever broke (I was always the one who had to run out).
+        </p>
+        <p>
+          I got my Bachelor's and Master's in Computer Science at
+          <strong>Cal Poly San Luis Obispo</strong>. My thesis was on building a
+          browser-based <a href="https://ieeexplore.ieee.org/document/5876137" target="_blank" rel="noopener" class="inline-link">WebIDE</a>
+          to help entry-level students learn to program, removing environment
+          setup as a barrier and baking in best practices from day one. That was
+          before cloud IDEs were a normal thing to do. The paper made it into
+          IEEE. I was a founding member of the Eta Delta chapter of
+          <strong>Sigma Pi</strong> and led orientation groups for incoming
+          students.
+        </p>
+        <p>
+          In 2008 I joined Salesforce as an intern and never really left. Over
+          fifteen years I've built things that are still in production: the
+          <strong>Developer Console</strong> (Salesforce's in-browser Apex IDE,
+          still widely used a decade later even though the stack around it has
+          moved on) and the <strong>Setup tree</strong> (the left-rail navigation
+          every Salesforce admin uses, and by interaction count the most-touched
+          single component in Setup). In between I co-founded
+          <strong>HearNow Technologies</strong> as CTO, an IoT notification
+          platform in Node.js, AWS, and Twilio, and won two internal Salesforce
+          hack days.
+        </p>
+        <p>
+          The chapter I'm proudest of is the Salesforce DX era. I architected the
+          <strong>Salesforce CLI</strong> from conception to over
+          <strong>30 million executions a month</strong>: 130+ commands, 60+
+          external plugins, 4,000+ automated tests across OS and shell matrix. I
+          was a trusted committer on the <strong>oclif</strong> open-source
+          framework and spoke at Dreamforce 2019 (two sessions, 262 attendees,
+          4.35-4.71 ratings, 1,295 bookmarks), TrailheaDX, and oclifconf.
+        </p>
+        <p>
+          Since 2023 I've been leading engineering on Salesforce's Digital Wallet:
+          consumption metering, billing infrastructure, and an agentic AI
+          experience that lets sellers query their usage data in plain English. I'm
+          also the AI Champion for my org, driving agentic tooling into the
+          engineering workflow and building the skills and hooks that make
+          that real.
+        </p>
+        <p>
+          I live in Marin with my wife Justine and our three kids.
+        </p>
+      </div>
+
+      <div class="timeline">
+        <h2 class="section-label">Career</h2>
+        <div class="timeline-items">
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-meta">
+                <span class="company">Salesforce</span>
+                <span class="period">2016 – Present</span>
+              </div>
+              <div class="role">Principal Member of Technical Staff</div>
+              <p>
+                Salesforce DX CLI lead → Digital Wallet engineering lead. Built
+                the CLI from zero to 30M+ monthly executions. Now leading
+                multi-tenant consumption architecture and an agentic AI
+                experience for sellers.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-meta">
+                <span class="company">HearNow Technologies</span>
+                <span class="period">2015 – 2016</span>
+              </div>
+              <div class="role">Co-Founder & CTO</div>
+              <p>
+                IoT notification platform from scratch: Node.js, Express, MongoDB,
+                Twilio, AWS. Investor demos, device-to-service firmware integration.
+              </p>
+            </div>
+          </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-meta">
+                <span class="company">Salesforce</span>
+                <span class="period">2008 – 2015</span>
+              </div>
+              <div class="role">Intern → Associate MTS → Lead MTS</div>
+              <p>
+                Built the Developer Console and the Setup tree. Won two internal
+                hack days. This was the first chapter of my Salesforce career.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="connect">
+        <h2 class="section-label">Connect</h2>
+        <div class="links">
+          <a
+            href="https://www.linkedin.com/in/thomasdvornik/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="connect-link">LinkedIn</a>
+          <a
+            href="https://github.com/amphro"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="connect-link">GitHub</a>
+          <a
+            href="https://ieeexplore.ieee.org/document/5876137"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="connect-link">IEEE Publication</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    padding: 8rem max(1.5rem, 4vw) 6rem;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  /* ── Hero section ── */
+  .hero-section {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  @media (max-width: 600px) {
+    .hero-section {
+      grid-template-columns: 1fr;
+    }
+    .hero-photo {
+      order: -1;
+    }
+  }
+
+  .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    font-family: var(--font-mono);
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin: 0.3rem 0 0.5rem;
+  }
+
+  .tagline {
+    font-size: 0.875rem;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    margin: 0 0 1.5rem;
+  }
+
+  .hero-quote {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.6;
+    margin: 0 0 0.25rem;
+    font-style: italic;
+    opacity: 0.75;
+  }
+
+  .hero-quote-source {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    margin: 0;
+    opacity: 0.6;
+  }
+
+  .photo {
+    width: 280px;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    display: block;
+    filter: contrast(1.02) saturate(0.95);
+  }
+
+  @media (max-width: 600px) {
+    .photo {
+      width: 160px;
+    }
+  }
+
+  /* ── Bio ── */
+  .bio {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .bio p {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text);
+    margin: 0;
+    opacity: 0.85;
+  }
+
+  .bio strong {
+    color: var(--text);
+    font-weight: 600;
+    opacity: 1;
+  }
+
+  .inline-link {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
+    transition: border-color 0.15s ease;
+  }
+
+  .inline-link:hover {
+    border-color: var(--accent);
+  }
+
+  /* ── Stats ── */
+  .stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  @media (max-width: 600px) {
+    .stats-row {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  .stat {
+    background: var(--surface);
+    padding: 1.5rem 1.25rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+    font-family: var(--font-mono);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    margin: 0 0 1.5rem;
+    font-weight: 500;
+  }
+
+  /* ── Currently ── */
+  .currently ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .currently li {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.6;
+    padding-left: 1.25rem;
+    position: relative;
+  }
+
+  .currently li::before {
+    content: '—';
+    position: absolute;
+    left: 0;
+    color: var(--accent);
+  }
+
+  /* ── Timeline ── */
+  .timeline-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: 1.25rem;
+  }
+
+  .timeline-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+    margin-top: 0.45rem;
+  }
+
+  .timeline-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+
+  .timeline-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .company {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+  }
+
+  .period {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: var(--font-mono);
+  }
+
+  .role {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .timeline-content p {
+    font-size: 0.9rem;
+    line-height: 1.65;
+    color: var(--muted);
+    margin: 0.4rem 0 0;
+  }
+
+  /* ── Connect ── */
+  .links {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+
+  .connect-link {
+    font-size: 0.9rem;
+    color: var(--muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .connect-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+</style>

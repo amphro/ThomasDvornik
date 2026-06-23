@@ -1,0 +1,105 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+export const prerender = true;
+---
+
+<BaseLayout title="Home">
+  <Hero />
+
+  <section class="teaser">
+    <div class="container">
+      <div class="grid">
+        <a href="/writing" class="card">
+          <span class="tag">Writing</span>
+          <h2>What is AI, actually.</h2>
+          <p>
+            A plain-English breakdown of the technology, written for people
+            who build with it.
+          </p>
+          <span class="more">Read it →</span>
+        </a>
+        <a href="/work" class="card">
+          <span class="tag">Work</span>
+          <h2>Enterprise at scale.</h2>
+          <p>
+            Full-stack platforms, GTM systems, Salesforce billing, shipped for
+            real organizations.
+          </p>
+          <span class="more">See the work →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .teaser {
+    padding: 5rem max(1.5rem, 4vw) 8rem;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  @media (max-width: 640px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    font-family: var(--font-mono);
+  }
+
+  .card h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    margin: 0;
+  }
+
+  .card p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  .more {
+    margin-top: auto;
+    font-size: 0.875rem;
+    color: var(--accent);
+    font-weight: 500;
+  }
+</style>

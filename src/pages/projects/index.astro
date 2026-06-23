@@ -1,0 +1,226 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+export const prerender = true;
+
+const projects = [
+  {
+    name: 'Oliver West',
+    url: 'https://www.oliverwest.co',
+    tag: 'Web · Astro',
+    status: 'Live',
+    description:
+      'Marketing site for a San Francisco tech recruiting firm. Laurence Johnson spent twelve years in the Bay Area placing engineers and executives at high-growth companies. The site needed to carry weight: enterprise feel, fast, and clearly positioned against generic recruiting.',
+    built: 'Astro, Tailwind CSS.',
+  },
+  {
+    name: 'Little Guppies Swim',
+    url: 'https://www.littleguppiesswim.com',
+    tag: 'Web · Astro · Cloudflare',
+    status: 'Live',
+    description:
+      'Site and admin platform for a private swim instruction business in the North Bay. The public site handles lesson info, booking flow, and parent resources. A separate admin app manages scheduling and operations. Two Astro apps sharing a monorepo.',
+    built: 'Astro, Cloudflare Pages, Cloudflare Workers.',
+  },
+  {
+    name: 'Doughpamine',
+    url: 'https://www.doughpamine.com',
+    tag: 'Web · Astro · Shopify',
+    status: 'Live',
+    description:
+      'Marketing site for a gourmet frozen cookie dough brand, developed by a fine dining pastry chef and former Michelin inspector. Sells through local groceries and Good Eggs. Built a custom store-finder pulling live Shopify location data, with a pixel-accurate recreation of the brand\'s Shopify theme for the static pages.',
+    built: 'Astro, Tailwind CSS, Shopify integration.',
+  },
+  {
+    name: 'AI Optimizations',
+    url: 'https://github.com/amphro/ai-optimizations',
+    tag: 'Writing · AI · Tooling',
+    status: 'Live',
+    description:
+      'Two things in one repo: a plain-English guide to how AI actually works (published as a readable site), and a Claude baseline document for engineers who want to get more out of AI in their daily workflow. No hype, no certification content. Built for people who ship.',
+    built: 'GitHub Pages, Markdown.',
+  },
+];
+---
+
+<BaseLayout
+  title="Projects"
+  description="Side projects and client work by Thomas Dvornik."
+>
+  <div class="page">
+    <div class="container">
+      <header class="page-header">
+        <span class="label">Projects</span>
+        <h1>Things I've built.</h1>
+        <p class="subtitle">
+          Outside of Salesforce: client sites, platforms, and tools I've put
+          together on my own time.
+        </p>
+      </header>
+
+      <div class="project-list">
+        {
+          projects.map(project => (
+            <div class="project-card">
+              <div class="project-top">
+                <div class="project-meta">
+                  <span class="project-tag">{project.tag}</span>
+                  <span class="live-badge">{project.status}</span>
+                </div>
+                <a
+                  href={project.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="project-link"
+                >
+                  {project.name} ↗
+                </a>
+              </div>
+              <p class="project-desc">{project.description}</p>
+              <div class="project-stack">
+                <span class="stack-label">Stack</span>
+                <span class="stack-value">{project.built}</span>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    padding: 8rem max(1.5rem, 4vw) 4rem;
+  }
+
+  .container {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .page-header {
+    margin-bottom: 3.5rem;
+  }
+
+  .label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    font-family: var(--font-mono);
+  }
+
+  h1 {
+    font-size: clamp(2.25rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin: 0.4rem 0 1rem;
+  }
+
+  .subtitle {
+    font-size: 1.05rem;
+    color: var(--muted);
+    line-height: 1.65;
+    max-width: 560px;
+    margin: 0;
+  }
+
+  .project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .project-card {
+    padding: 2rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    transition: border-color 0.2s ease;
+  }
+
+  .project-card:hover {
+    border-color: color-mix(in srgb, var(--accent) 50%, var(--border));
+  }
+
+  .project-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .project-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .project-tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-family: var(--font-mono);
+  }
+
+  .live-badge {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #4ade80;
+    font-family: var(--font-mono);
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    background: rgba(74, 222, 128, 0.08);
+  }
+
+  .project-link {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+    transition: color 0.15s ease;
+  }
+
+  .project-link:hover {
+    color: var(--accent);
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  .project-stack {
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    border-top: 1px solid var(--border);
+    padding-top: 0.85rem;
+  }
+
+  .stack-label {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    flex-shrink: 0;
+  }
+
+  .stack-value {
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-family: var(--font-mono);
+  }
+</style>
