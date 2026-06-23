@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Cascadia Code', ui-monospace, monospace;
+}
+
+/* ── Light mode (default) ── */
+:root {
+  --bg:           #FFFBF5;
+  --surface:      #FFFFFF;
+  --surface-2:    #FDF6EF;
+  --border:       #EDE3DB;
+  --text:         #1A1512;
+  --muted:        #7A6E67;
+  --accent:       #C0441B;
+  --accent-h:     #A53B16;
+  --accent-soft:  #FFF0E8;
+  --on-accent:    #FFFFFF;
+  --shadow:       0 2px 8px rgba(60, 30, 10, 0.07);
+  --shadow-md:    0 4px 20px rgba(60, 30, 10, 0.10);
+}
+
+/* ── Dark mode (system preference) ── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme='light']) {
+    --bg:           #100D0A;
+    --surface:      #1C1712;
+    --surface-2:    #221D17;
+    --border:       #2E2620;
+    --text:         #F0EAE4;
+    --muted:        #8A7D75;
+    --accent:       #E8642A;
+    --accent-h:     #FF7535;
+    --accent-soft:  rgba(232, 100, 42, 0.13);
+    --on-accent:    #FFFFFF;
+    --shadow:       0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md:    0 4px 24px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* ── Manual theme overrides ── */
+[data-theme='dark'] {
+  --bg:           #100D0A;
+  --surface:      #1C1712;
+  --surface-2:    #221D17;
+  --border:       #2E2620;
+  --text:         #F0EAE4;
+  --muted:        #8A7D75;
+  --accent:       #E8642A;
+  --accent-h:     #FF7535;
+  --accent-soft:  rgba(232, 100, 42, 0.13);
+  --on-accent:    #FFFFFF;
+  --shadow:       0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-md:    0 4px 24px rgba(0, 0, 0, 0.4);
+}
+
+[data-theme='light'] {
+  --bg:           #FFFBF5;
+  --surface:      #FFFFFF;
+  --surface-2:    #FDF6EF;
+  --border:       #EDE3DB;
+  --text:         #1A1512;
+  --muted:        #7A6E67;
+  --accent:       #C0441B;
+  --accent-h:     #A53B16;
+  --accent-soft:  #FFF0E8;
+  --on-accent:    #FFFFFF;
+  --shadow:       0 2px 8px rgba(60, 30, 10, 0.07);
+  --shadow-md:    0 4px 20px rgba(60, 30, 10, 0.10);
+}
+
+/* ── Base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans);
+  margin: 0;
+  min-height: 100vh;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+::selection {
+  background: var(--accent-soft);
+  color: var(--text);
+}
+
+a {
+  color: inherit;
+}
+
+/* Prevent flash of wrong theme */
+html:not([data-theme]) body {
+  visibility: hidden;
+}

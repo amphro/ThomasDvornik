@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Steelman from '../../components/lab/Steelman';
+export const prerender = true;
+---
+
+<BaseLayout
+  title="Steelman Machine"
+  description="Get the strongest counterargument to your position, its weaknesses, and a defensibility score."
+>
+  <div class="page">
+    <div class="container">
+      <nav class="breadcrumb">
+        <a href="/ai-labs">← AI Labs</a>
+      </nav>
+
+      <header class="page-header">
+        <div class="header-meta">
+          <span class="tag">AI · Strategy</span>
+          <span class="live-badge">Live</span>
+        </div>
+        <h1>Steelman Machine</h1>
+        <p class="subtitle">
+          Drop in a position (a technical decision, a product bet, an argument
+          you're about to make in a meeting) and get the strongest possible case
+          against you, the actual holes in your reasoning, and a score for how
+          defensible you really are.
+        </p>
+        <p class="powered">Powered by Llama 3.3 70B on Cloudflare Workers AI. Nothing is stored.</p>
+      </header>
+
+      <div class="demo-body">
+        <Steelman client:only="react" />
+      </div>
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .page {
+    padding: 8rem max(1.5rem, 4vw) 4rem;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .breadcrumb a {
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    font-family: var(--font-mono);
+    transition: color 0.15s ease;
+  }
+
+  .breadcrumb a:hover {
+    color: var(--accent);
+  }
+
+  .page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .header-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+
+  .tag {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    font-family: var(--font-mono);
+  }
+
+  .live-badge {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #4ade80;
+    font-family: var(--font-mono);
+    padding: 0.15rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid rgba(74, 222, 128, 0.3);
+    background: rgba(74, 222, 128, 0.08);
+  }
+
+  h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    color: var(--text);
+    margin: 0;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 0;
+    max-width: 580px;
+  }
+
+  .powered {
+    font-size: 0.75rem;
+    color: var(--muted);
+    font-family: var(--font-mono);
+    margin: 0;
+    opacity: 0.6;
+  }
+
+  .demo-body {
+    padding: 2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+</style>

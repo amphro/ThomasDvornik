@@ -1,9 +1,9 @@
 [{
-  "shortname" : "twitter",
-  "img" : "/images/social/icon-twitter.jpeg",
-  "url" : "http://www.twitter.com/amphro"
+  "shortname" : "github",
+  "img" : "/images/social/icon-github.png",
+  "url" : "https://github.com/amphro"
 },{
   "shortname" : "linkedin",
   "img" : "/images/social/icon-linkedin.jpeg",
-  "url" : "http://www.linkedin.com/in/thomasdvornik//"
+  "url" : "https://www.linkedin.com/in/thomasdvornik/"
 }]

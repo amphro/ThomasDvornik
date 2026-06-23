@@ -1,23 +1,25 @@
 {
-  "name": "ThomasDvornikDotCom",
-  "version": "0.0.0",
-  "description": "Code for personal website",
-  "main": "server.js",
+  "name": "thomasdvornik",
+  "type": "module",
+  "version": "1.0.0",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "astro dev --port 4322",
+    "build": "astro build",
+    "preview": "astro preview",
+    "deploy": "astro build && wrangler deploy"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/amphro/ThomasDvornik.git"
-  },
-  "author": "Thomas Dvornik",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/amphro/ThomasDvornik/issues"
-  },
-  "homepage": "https://github.com/amphro/ThomasDvornik",
   "dependencies": {
-    "ejs": "^1.0.0",
-    "express": "^4.2.0"
+    "@astrojs/cloudflare": "^12.6.13",
+    "@astrojs/react": "^4.4.2",
+    "astro": "^5.18.2",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "latest",
+    "@tailwindcss/vite": "latest",
+    "tailwindcss": "latest",
+    "typescript": "^5.0.0",
+    "wrangler": "latest"
   }
 }

@@ -1,5 +1,9 @@
+node_modules/
+dist/
+.astro/
+.wrangler/
+.dev.vars
+*.local
 .DS_Store
-node_modules
 .tmp
 .sass-cache
-public/images
