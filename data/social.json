@@ -1,9 +1,10 @@
-[{
-  "shortname" : "github",
-  "img" : "/images/social/icon-github.png",
-  "url" : "https://github.com/amphro"
-},{
-  "shortname" : "linkedin",
-  "img" : "/images/social/icon-linkedin.jpeg",
-  "url" : "https://www.linkedin.com/in/thomasdvornik/"
-}]
+[
+  {
+    "shortname": "github",
+    "url": "https://github.com/amphro"
+  },
+  {
+    "shortname": "linkedin",
+    "url": "https://www.linkedin.com/in/thomasdvornik/"
+  }
+]

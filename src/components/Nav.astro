@@ -302,6 +302,14 @@ const path = Astro.url.pathname;
     .nav-hamburger { display: flex; }
     .nav-links { display: none; }
     .nav.open .nav-mobile-menu { display: flex; }
+
+    /* Expand touch targets to 44px for mobile usability */
+    .nav-hamburger,
+    .theme-toggle,
+    .nav-social-link {
+      width: 44px;
+      height: 44px;
+    }
   }
 </style>
 
@@ -333,6 +341,7 @@ const path = Astro.url.pathname;
     hamburger?.setAttribute('aria-expanded', 'false');
     nav?.classList.remove('open');
     mobileMenu?.setAttribute('aria-hidden', 'true');
+    hamburger?.focus();
   }
 
   hamburger?.addEventListener('click', () => {
