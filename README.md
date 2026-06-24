@@ -1,3 +1,5 @@
+*Claude generated, human verified.*
+
 # thomasdvornik.com
 
 My personal site. Built as an Astro 5 app running on Cloudflare Workers, with a couple of live AI demos in the AI Labs section.
@@ -38,7 +40,3 @@ Two demos running against a live llama-3.3-70b-instruct model via Cloudflare AI:
 - **Vibe Check**: Give it a technical or career decision. It returns a gut-check rating, what you might be missing, and what you got right.
 
 Both are rate-limited per IP at the Cloudflare Workers level. No API key needed to use the site.
-
----
-
-*Claude generated, human verified.*
