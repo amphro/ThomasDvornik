@@ -7,17 +7,19 @@ interface Node {
   vy: number;
 }
 
-function hexToRgb(hex: string): string {
+function hexToRgb(hex: string): string | null {
   const h = hex.trim().replace('#', '');
+  if (h.length !== 6) return null;
   const r = parseInt(h.slice(0, 2), 16);
   const g = parseInt(h.slice(2, 4), 16);
   const b = parseInt(h.slice(4, 6), 16);
+  if (Number.isNaN(r) || Number.isNaN(g) || Number.isNaN(b)) return null;
   return `${r},${g},${b}`;
 }
 
 function readAccent(): string {
   const hex = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
-  return hexToRgb(hex) || '192,68,27';
+  return hexToRgb(hex) ?? '192,68,27';
 }
 
 export default function HeroVisual() {
@@ -151,6 +153,7 @@ export default function HeroVisual() {
     function onResize() {
       resize();
       init();
+      if (prefersReduced) draw();
     }
 
     function onMouseMove(e: MouseEvent) {
@@ -178,6 +181,7 @@ export default function HeroVisual() {
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       style={{
         position: 'absolute',
         inset: 0,
