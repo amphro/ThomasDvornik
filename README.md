@@ -1,6 +1,6 @@
-*Claude generated, human verified.*
+# Thomas Dvornik · Personal Website
 
-# thomasdvornik.com
+> ***🤖 Claude generated · Human verified***
 
 My personal site. Built as an Astro 5 app running on Cloudflare Workers, with a couple of live AI demos in the AI Labs section.
 
