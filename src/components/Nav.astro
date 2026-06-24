@@ -76,7 +76,41 @@ const path = Astro.url.pathname;
           </svg>
         </span>
       </button>
+      <button
+        class="nav-hamburger"
+        id="nav-hamburger"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+        aria-controls="nav-mobile-menu"
+      >
+        <span class="hamburger-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+            <line x1="2" y1="5" x2="16" y2="5"/>
+            <line x1="2" y1="9" x2="16" y2="9"/>
+            <line x1="2" y1="13" x2="16" y2="13"/>
+          </svg>
+        </span>
+        <span class="close-icon" aria-hidden="true">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round">
+            <line x1="4" y1="4" x2="14" y2="14"/>
+            <line x1="14" y1="4" x2="4" y2="14"/>
+          </svg>
+        </span>
+      </button>
     </div>
+  </div>
+
+  <div class="nav-mobile-menu" id="nav-mobile-menu" aria-hidden="true">
+    {
+      links.map(({ href, label }) => (
+        <a
+          href={href}
+          class:list={['nav-mobile-link', { active: path.startsWith(href) }]}
+        >
+          {label}
+        </a>
+      ))
+    }
   </div>
 </nav>
 
@@ -191,29 +225,91 @@ const path = Astro.url.pathname;
     border-color: var(--accent);
   }
 
-  /* Both hidden by default — only one is revealed per state */
   .icon-sun,
   .icon-moon {
     display: none;
   }
 
-  /* :global() prevents Astro scoping [data-theme] onto the nav element;
-     it must match <html>, not the nav */
   :global([data-theme='dark']) .icon-moon  { display: flex; }
   :global([data-theme='light']) .icon-sun  { display: flex; }
 
-  /* System preference fallback (before inline script runs) */
   @media (prefers-color-scheme: dark) {
     :global(:root:not([data-theme])) .icon-moon { display: flex; }
   }
   @media (prefers-color-scheme: light) {
     :global(:root:not([data-theme])) .icon-sun  { display: flex; }
   }
+
+  /* Hamburger button — desktop hidden, mobile visible */
+  .nav-hamburger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .nav-hamburger:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .close-icon { display: none; }
+  .hamburger-icon { display: flex; }
+
+  .nav-hamburger[aria-expanded="true"] .close-icon { display: flex; }
+  .nav-hamburger[aria-expanded="true"] .hamburger-icon { display: none; }
+
+  /* Mobile menu panel */
+  .nav-mobile-menu {
+    display: none;
+    flex-direction: column;
+    padding: 0.5rem max(1.5rem, 4vw) 0.75rem;
+    background: color-mix(in srgb, var(--bg) 92%, transparent);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-mobile-link {
+    font-size: 0.925rem;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: 0.01em;
+    transition: color 0.15s ease;
+  }
+
+  .nav-mobile-link:last-child {
+    border-bottom: none;
+  }
+
+  .nav-mobile-link:hover,
+  .nav-mobile-link.active {
+    color: var(--accent);
+  }
+
+  @media (max-width: 720px) {
+    .nav-hamburger { display: flex; }
+    .nav-links { display: none; }
+    .nav.open .nav-mobile-menu { display: flex; }
+  }
 </style>
 
 <script>
   const nav = document.getElementById('nav');
   const btn = document.getElementById('theme-toggle');
+  const hamburger = document.getElementById('nav-hamburger');
+  const mobileMenu = document.getElementById('nav-mobile-menu');
 
   function updateScroll() {
     if (window.scrollY > 20) {
@@ -231,5 +327,30 @@ const path = Astro.url.pathname;
     const next = current === 'dark' ? 'light' : 'dark';
     document.documentElement.dataset.theme = next;
     localStorage.setItem('theme', next);
+  });
+
+  function closeMenu() {
+    hamburger?.setAttribute('aria-expanded', 'false');
+    nav?.classList.remove('open');
+    mobileMenu?.setAttribute('aria-hidden', 'true');
+  }
+
+  hamburger?.addEventListener('click', () => {
+    const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+    if (isOpen) {
+      closeMenu();
+    } else {
+      hamburger.setAttribute('aria-expanded', 'true');
+      nav?.classList.add('open');
+      mobileMenu?.setAttribute('aria-hidden', 'false');
+    }
+  });
+
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMenu);
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeMenu();
   });
 </script>

@@ -7,11 +7,25 @@ interface Node {
   vy: number;
 }
 
+function hexToRgb(hex: string): string {
+  const h = hex.trim().replace('#', '');
+  const r = parseInt(h.slice(0, 2), 16);
+  const g = parseInt(h.slice(2, 4), 16);
+  const b = parseInt(h.slice(4, 6), 16);
+  return `${r},${g},${b}`;
+}
+
+function readAccent(): string {
+  const hex = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim();
+  return hexToRgb(hex) || '192,68,27';
+}
+
 export default function HeroVisual() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -9999, y: -9999 });
   const nodesRef = useRef<Node[]>([]);
   const rafRef = useRef<number>(0);
+  const accentRgbRef = useRef<string>('192,68,27');
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -19,9 +33,21 @@ export default function HeroVisual() {
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     const NODE_COUNT = 55;
     const CONNECT_DIST = 130;
     const REPEL_DIST = 110;
+
+    accentRgbRef.current = readAccent();
+
+    const observer = new MutationObserver(() => {
+      accentRgbRef.current = readAccent();
+    });
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
 
     function resize() {
       canvas.width = canvas.offsetWidth * window.devicePixelRatio;
@@ -78,6 +104,7 @@ export default function HeroVisual() {
     function draw() {
       const w = canvas.offsetWidth;
       const h = canvas.offsetHeight;
+      const rgb = accentRgbRef.current;
       ctx.clearRect(0, 0, w, h);
 
       const nodes = nodesRef.current;
@@ -87,8 +114,8 @@ export default function HeroVisual() {
           const dy = nodes[i].y - nodes[j].y;
           const d = Math.sqrt(dx * dx + dy * dy);
           if (d < CONNECT_DIST) {
-            const alpha = (1 - d / CONNECT_DIST) * 0.35;
-            ctx.strokeStyle = `rgba(245,166,35,${alpha})`;
+            const alpha = (1 - d / CONNECT_DIST) * 0.3;
+            ctx.strokeStyle = `rgba(${rgb},${alpha})`;
             ctx.lineWidth = 0.6;
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
@@ -99,7 +126,7 @@ export default function HeroVisual() {
       }
 
       nodes.forEach(n => {
-        ctx.fillStyle = 'rgba(245,166,35,0.55)';
+        ctx.fillStyle = `rgba(${rgb},0.45)`;
         ctx.beginPath();
         ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
         ctx.fill();
@@ -114,7 +141,12 @@ export default function HeroVisual() {
 
     resize();
     init();
-    loop();
+
+    if (prefersReduced) {
+      draw();
+    } else {
+      loop();
+    }
 
     function onResize() {
       resize();
@@ -136,6 +168,7 @@ export default function HeroVisual() {
 
     return () => {
       cancelAnimationFrame(rafRef.current);
+      observer.disconnect();
       window.removeEventListener('resize', onResize);
       canvas.removeEventListener('mousemove', onMouseMove);
       canvas.removeEventListener('mouseleave', onMouseLeave);
